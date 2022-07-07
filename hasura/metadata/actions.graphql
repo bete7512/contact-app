@@ -1,0 +1,72 @@
+type Mutation {
+  Signup(
+    First_name: String!
+    Last_name: String!
+    username: String!
+    email: String!
+    password: String!
+    confirmpassword: String!
+  ): SignupOutput
+}
+type Mutation {
+  login(
+    username: String!
+    password: String!
+  ): Loginoutput
+}
+
+type Mutation {
+  register(
+    First_name: String!
+    Last_name: String!
+    username: String!
+    email: String!
+    password: String!
+    confirmpassword: String!
+  ): SignupOutput
+}
+input SampleInput {
+  username: String!
+  password: String!
+}
+input signin {
+  username: String!
+  password: String!
+}
+input signininput {
+  username: String!
+  password: String!
+}
+type AdduserOutput {
+  id: Int!
+}
+type SignupOutput {
+  success: String!
+}
+type SampleOutput {
+  accessToken: String!
+}
+
+type LoginOutput {
+  id: Int!
+}
+type signinoutput {
+  message: String!
+  accessToken: String!
+}
+type MyQueryOutput {
+  email: String!
+}
+type TestOutput {
+  username: String!
+}
+type SigninOutput {
+  token: String!
+}
+type PasswordOutput {
+  password: String!
+}
+type Loginoutput {
+  token: String!
+}
+

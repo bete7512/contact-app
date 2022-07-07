@@ -1,0 +1,19 @@
+table:
+  schema: public
+  name: contactlist
+select_permissions:
+  - role: anonymous
+    permission:
+      columns:
+        - id
+        - name
+        - phone
+      filter: {}
+  - role: user
+    permission:
+      columns:
+        - name
+        - phone
+      filter:
+        user_id:
+          _eq: X-Hasura-User-Id
