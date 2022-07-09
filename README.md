@@ -1,5 +1,4 @@
-readme
-for this contact application
+For this contact application
 I used 
 
 ---Vue js,tailwind css,vite,apollo,grapghql for front end
