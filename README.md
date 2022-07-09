@@ -1,7 +1,7 @@
 For this contact application
 I used 
 
----Vue js,tailwind css,vite,apollo,grapghql for front end
+---Vue3,tailwind css,vite,apollo,grapghql for front end
 
 --hasura grapghql engine,nodejs,express js,jwt authentication
 
