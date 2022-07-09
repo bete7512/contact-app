@@ -1,6 +1,19 @@
 table:
   schema: public
   name: contactlist
+insert_permissions:
+  - role: user
+    permission:
+      check:
+        user_id:
+          _eq: X-Hasura-User-Id
+      set:
+        user_id: x-hasura-User-Id
+      columns:
+        - id
+        - user_id
+        - name
+        - phone
 select_permissions:
   - role: anonymous
     permission:
@@ -12,8 +25,38 @@ select_permissions:
   - role: user
     permission:
       columns:
+        - id
+        - user_id
         - name
         - phone
+      filter:
+        user_id:
+          _eq: X-Hasura-User-Id
+update_permissions:
+  - role: anonymous
+    permission:
+      columns:
+        - id
+        - user_id
+        - name
+        - phone
+      filter:
+        user_id:
+          _eq: X-Hasura-User-Id
+      check:
+        user_id:
+          _eq: X-Hasura-User-Id
+  - role: user
+    permission:
+      columns: []
+      filter:
+        user_id:
+          _eq: X-Hasura-User-Id
+      check: null
+delete_permissions:
+  - role: user
+    permission:
+      backend_only: false
       filter:
         user_id:
           _eq: X-Hasura-User-Id
