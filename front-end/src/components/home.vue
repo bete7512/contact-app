@@ -1,6 +1,7 @@
 <template>
-  <Nav v-on:signup="issignup = true"  v-on:login="islogin = true" class="main fixed"></Nav>
-  <div class="relative bg-cyan-900 min-h-screen w-full text-white inline-flex mx-auto lg:py-32 md:px-8 xl:px-20 sm:max-w-xl md:max-w-full">
+  <Nav v-on:signup="issignup = true" v-on:login="islogin = true" class="main fixed"></Nav>
+  <div
+    class="relative bg-cyan-900 min-h-screen w-full text-white inline-flex mx-auto lg:py-32 md:px-8 xl:px-20 sm:max-w-xl md:max-w-full">
     <div class="max-w-xl  mx-auto lg:max-w-screen-xl">
       <div class="mb-16 lg:max-w-lg lg:mb-0">
         <div class="max-w-xl mb-6">
@@ -16,7 +17,9 @@
             <h1 class="inline-block text-white italic">Well Come to my Miniproject </h1>
           </h2>
           <p class="text-base text-white md:text-lg">
-           This project is done in frontend I used to vue js, csstailwind, vite, for backend I used nodejs,express js,hasura graphql engine,docker for containerization of postgress database and hasura graphql engine to run in port 8080
+            This project is done in frontend I used to vue js, csstailwind, vite, for backend I used nodejs,express
+            js,hasura graphql engine,docker for containerization of postgress database and hasura graphql engine to run
+            in port 8080
           </p>
         </div>
         <div class="flex items-center ">
@@ -29,22 +32,24 @@
     </div>
   </div>
   <loginVue v-if="islogin" v-on:loginclose="islogin = false"></loginVue>
-  <Signup v-if="issignup" v-on:signupclose="issignup = false"></Signup>
+  <Signup v-if="issignup" v-on:signupclose="issignup = false "></Signup>
+  <emailverificationVue v-if="signupemailmodal" v-on:emailsentsuccess="signupemailmodal = true" :notify="success">
+  </emailverificationVue>
 </template>
 <script setup>
+import emailverificationVue from './emailverification.vue';
 import { ref } from 'vue';
 import Nav from './nav.vue';
 import loginVue from './login.vue';
 import Signup from './signup.vue'
 import { defineProps, defineEmits } from 'vue';
 const islogin = ref(false)
+const signupemailmodal = ref(false)
 const issignup = ref(false)
 const emit = defineEmits(['login', 'signup', 'delete'])
 </script>
 <style>
-.main{
-position: fixed;
-
-
+.main {
+  position: fixed;
 }
 </style>

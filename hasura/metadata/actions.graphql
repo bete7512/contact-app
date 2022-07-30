@@ -18,12 +18,7 @@ type Mutation {
 
 type Mutation {
   register(
-    First_name: String!
-    Last_name: String!
-    username: String!
-    email: String!
-    password: String!
-    confirmpassword: String!
+    objects: objects!
   ): SignupOutput
 }
 
@@ -40,6 +35,20 @@ input signin {
 input signininput {
   username: String!
   password: String!
+}
+
+input SignupInput {
+  username: String!
+  email: String!
+  password: String!
+  confirmpassword: String!
+}
+
+input objects {
+  username: String!
+  email: String!
+  password: String!
+  confirmpassword: String!
 }
 
 type AdduserOutput {

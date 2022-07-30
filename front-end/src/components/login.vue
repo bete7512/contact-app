@@ -5,7 +5,6 @@
                 <div class="space-y-3 p-5">
                     <div class="flex justify-end"><button @click="loginclose"
                             class="font-bold text-4xl hover:bg-red-700 h-10 w-10 rounded-md">x</button></div>
-
                     <div class="relative mb-4">
                         <label for="full-name" class="leading-7 text-sm text-gray-600">username</label>
                         <input type="text" id="name" name="name" v-model="username"
@@ -46,10 +45,9 @@ const failure = ref(false)
 const error = ref('')
 const username = ref('')
 const password = ref('')
-
 const { mutate: Login, onDone } = useMutation(gql`
 mutation Login($password: String!, $username: String!) {
-  login(password: $password, username: $username) {
+  signin(password: $password, username: $username) {
     token
   }
 }
@@ -59,10 +57,9 @@ mutation Login($password: String!, $username: String!) {
         username: username.value,
         password: password.value
     }
-})
-)
+}))
 onDone((result) => {
-    window.localStorage.setItem('Apollotoken', result.data.login.token)
+    window.localStorage.setItem('Apollotoken', result.data.signin.token)
 })
 const token = window.localStorage.getItem("Apollotoken");
 const validate = () => {
@@ -72,7 +69,9 @@ const validate = () => {
     }
     else {
         Login();
-        onDone();
+        onDone((response)=>{
+            console.log(response);
+        });
         console.log(window.localStorage.getItem("Apollotoken"))
         if (!window.localStorage.getItem("Apollotoken")) {
             failure.value = true
@@ -95,13 +94,10 @@ const validate = () => {
         }
     }
 }
-
-
 </script>
 <style scoped>
 .overlay {
     position: fixed;
-
     background-color: rgb(0, 0, 0, 0.3);
     /* z-index:100; */
 }

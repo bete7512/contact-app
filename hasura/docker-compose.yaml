@@ -15,7 +15,7 @@ services:
       - "host.docker.internal:host-gateway"
     depends_on:
       - "postgres"
-    restart: always
+    # restart: always
     environment:
       HASURA_GRAPHQL_METADATA_DATABASE_URL: postgres://postgres:postgrespassword@postgres:5432/postgres
       ## this env var can be used to add the above postgres database to Hasura as a data source. this can be removed/updated based on your needs

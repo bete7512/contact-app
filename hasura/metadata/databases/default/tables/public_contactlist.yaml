@@ -15,13 +15,6 @@ insert_permissions:
         - name
         - phone
 select_permissions:
-  - role: anonymous
-    permission:
-      columns:
-        - id
-        - name
-        - phone
-      filter: {}
   - role: user
     permission:
       columns:
@@ -33,19 +26,6 @@ select_permissions:
         user_id:
           _eq: X-Hasura-User-Id
 update_permissions:
-  - role: anonymous
-    permission:
-      columns:
-        - id
-        - user_id
-        - name
-        - phone
-      filter:
-        user_id:
-          _eq: X-Hasura-User-Id
-      check:
-        user_id:
-          _eq: X-Hasura-User-Id
   - role: user
     permission:
       columns: []

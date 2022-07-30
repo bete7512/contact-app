@@ -17,12 +17,17 @@ actions:
     definition:
       kind: synchronous
       handler: http://host.docker.internal:3000/register
+    permissions:
+      - role: anonymous
+      - role: user
 custom_types:
   enums: []
   input_objects:
     - name: SampleInput
     - name: signin
     - name: signininput
+    - name: SignupInput
+    - name: objects
   objects:
     - name: AdduserOutput
     - name: SignupOutput

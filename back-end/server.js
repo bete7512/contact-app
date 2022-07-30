@@ -1,6 +1,9 @@
 const express = require('express')
+require('dotenv').config()
+const confirm = require('./handler/confirm')
 const app  = express();
 app.use(express.json())
+app.get('/confirm/:route',confirm)
 app.post('/:route', (req,res)=>{
   try{
     const handler = require(`./handler/${req.params.route}`);
@@ -20,6 +23,6 @@ app.post('/:route', (req,res)=>{
 })
 app.listen(3000,
     () => {
-      console.log('here is going well')
+      console.log("on the moon")
     }
   );
