@@ -21,6 +21,7 @@
     "autoprefixer": "^10.4.7",
     "postcss": "^8.4.14",
     "tailwindcss": "^3.1.4",
-    "vite": "^2.9.9"
+    "vite": "^2.9.9",
+    "vue-cli-plugin-apollo": "~0.22.2"
   }
 }

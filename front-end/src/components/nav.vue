@@ -5,10 +5,10 @@
                 <router-link to="/"><button class="hover:bg-black w-14 h-14">Home</button></router-link>
             </div> -->
             <div class=" inline-flex">
-                <button class="hover:bg-black w-14 h-14" @click="sign">Signup</button>
+                <button class="hover:bg-black w-14 h-14" ><router-link :to="{name:'signup'}">Signup</router-link></button>
             </div>
               <div class=" inline-flex">
-                <button class="hover:bg-black w-14 h-14" @click="log">Signin</button>
+                <button class="hover:bg-black w-14 h-14" @click="log"><router-link :to="{name:'Login'}">Signin</router-link></button>
             </div>
 
         </div>

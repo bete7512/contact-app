@@ -1,6 +1,6 @@
 <template>
   <router-view></router-view>
-  <footerVue></footerVue>
+  <!-- <footerVue></footerVue> -->
 </template>
 <script setup>
 import footerVue from './components/footer.vue';

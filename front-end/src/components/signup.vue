@@ -3,8 +3,10 @@
         <div class=" bg-white rounded-md ">
             <div class="inline-flex w-auto  h-auto border-zinc-900 justify-center">
                 <div class="space-y-5 p-5">
-                    <div class="flex justify-end"><button @click="signupclose" class="font-bold text-4xl hover:bg-red-700 h-10 w-10 rounded-md">x</button></div>
-                    <div class="relative mb-4">
+                    <div class="flex justify-end">
+                        <router-link to="/"><button class="font-bold text-4xl hover:bg-red-700 h-10 w-10 rounded-md">x</button>
+                        </router-link>
+                    </div>                    <div class="relative mb-4">
                         <label for="full-name" class="leading-7 text-sm text-gray-600">name</label>
                         <input type="text" id="name" v-model="name" name="name" class="w-full bg-white rounded-md border border-gray-300 focus:border-indigo-600 focus:ring-2 focus:ring-indigo-200 text-sm outline-none text-gray-900 py-1 px-3 leading-8 transition-colors duration-150 ease-in-out">                </div>
                     <div class="relative mb-4">
@@ -19,7 +21,7 @@
                     </div>
                     <div class="relative mb-4">
                         <label for="full-name" class="leading-7 text-sm text-gray-600">password</label>
-                        <input type="password" id="name" v-model="passwordi" name="name"
+                        <input type="password" id="name" v-model="password" name="name"
                             class="w-full bg-white rounded-md border border-gray-300 focus:border-indigo-600 focus:ring-2 focus:ring-indigo-200 text-sm outline-none text-gray-900 py-1 px-3 leading-8 transition-colors duration-150 ease-in-out">
                     </div>
                     <div class="relative mb-4">
@@ -37,63 +39,46 @@
     </div>
 </template>
 <script setup>
-import emailverificationVue from './emailverification.vue';
 import { useRoute, useRouter } from 'vue-router';
-import gql from 'graphql-tag';
 import { ref } from 'vue';
-import { useMutation, useQuery } from '@vue/apollo-composable';
-import { defineEmits, defineProps } from 'vue';
+import { useMutation,} from '@vue/apollo-composable';
+import { useStore } from '../store/store.js';
 const router = useRouter()
 const route = useRoute()
 const email = ref('')
 const name = ref('')
 const username = ref('')
-const passwordi = ref('')
+const password = ref('')
 const passwordii = ref('')
 const success = ref('')
 const failure = ref(false)
 const error = ref('')
 const signupemailmodal = ref(false)
-const emit = defineEmits(['signupclose'])
-const signupclose = (event) => {
-    emit("signupclose")
-}
-const { mutate: Register, onDone } = useMutation(
-    gql`
-mutation Register($name:String!,$email: String!, $username: String!, $password: String!) {
-  register(objects: { name:$name,email:$email, username: $username, password: $password}) {
-    success
-  }
-}
-`, () => ({
-    variables: {
-        name: name.value,
-        email: email.value,
-        username: username.value,
-        password: passwordi.value,
-    }
-}))
-onDone((result) => {
-    success.value = result.data.register.success
-})
+const user = useStore()
 const signupsuccessfull = ref(false)
 const registersuccessfully = () => {
-    Register()
-
-    if (!success.value) {
-        failure.value = true
-        error.value = "you are not registered successfully"
-    }
-    else {
-        signupemailmodal.value = true
-        emit("signupclose")
-        // router.push({
-        //     name: 'Login',
-        //     query: {
-        //         ...route.query
-        //     }
-        // })
-    }
+    user.signup(
+        name.value,
+       username.value,
+       email.value,
+       password.value
+    )
+    
+    // Register()
+    // if (!success.value) {
+    //     failure.value = true
+    //     error.value = "you are not registered successfully"
+    // }
+    // else {
+    //     signupemailmodal.value = true
+    //     emit("signupclose")
+    //     // router.push({
+    //     //     name: 'Login',
+    //     //     query: {
+    //     //         ...route.query
+    //     //     }
+    //     // })
+    // }
 }
 </script>
 <style scoped>

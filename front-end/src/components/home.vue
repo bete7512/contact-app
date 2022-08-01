@@ -26,17 +26,30 @@
           <button
             class="inline-flex items-center bg-blue-900 justify-center h-12 px-6 mr-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none">
             Get started
+
+
+
+
+            <div>
+              {{user.counter}}
+              <button @click="increment()">increment</button>
+            </div>
           </button>
         </div>
       </div>
     </div>
+
   </div>
-  <loginVue v-if="islogin" v-on:loginclose="islogin = false"></loginVue>
-  <Signup v-if="issignup" v-on:signupclose="issignup = false "></Signup>
+  
+  <!-- <loginVue v-if="islogin" v-on:loginclose="islogin = false"></loginVue> -->
+  <!-- <Signup v-if="issignup" v-on:signupclose="issignup = false "></Signup> -->
   <emailverificationVue v-if="signupemailmodal" v-on:emailsentsuccess="signupemailmodal = true" :notify="success">
   </emailverificationVue>
 </template>
 <script setup>
+import { storeToRefs } from 'pinia'
+
+import { useStore } from '../store/store';
 import emailverificationVue from './emailverification.vue';
 import { ref } from 'vue';
 import Nav from './nav.vue';
@@ -44,8 +57,13 @@ import loginVue from './login.vue';
 import Signup from './signup.vue'
 import { defineProps, defineEmits } from 'vue';
 const islogin = ref(false)
+const user = useStore()
 const signupemailmodal = ref(false)
 const issignup = ref(false)
+const increment = ()=>{
+  console.log(user.counter)
+  user.increment();
+}
 const emit = defineEmits(['login', 'signup', 'delete'])
 </script>
 <style>
