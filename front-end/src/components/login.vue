@@ -35,7 +35,7 @@
     </div>
 </template>
 <script setup>
-import { Form, Field } from 'vee-validate'
+// import { Form, Field } from 'vee-validate'
 import { storeToRefs } from 'pinia'
 import { useStore } from '../store/store.js';
 // import { defineEmits, } from 'vue';
